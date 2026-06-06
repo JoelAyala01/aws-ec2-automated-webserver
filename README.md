@@ -10,17 +10,17 @@ Este proyecto demuestra el despliegue automático, seguro y monitoreado de una i
 **Amazon SNS (Simple Notification Service):** Infraestructura de mensajería configurada bajo el modelo Pub/Sub para notificaciones de emergencia operativas.
 
 ## 🚀 Detalles de la Implementación
-1. ## Políticas del Firewall (Security Group)
+## 1. Políticas del Firewall (Security Group)
 
 El tráfico entrante fue estrictamente limitado en el recurso web-server-sg:
 - **Acceso Público:** Puerto 80 (HTTP) abierto globalmente (0.0.0.0/0) para garantizar la disponibilidad del servicio web.
 - **Acceso de Gestión:** Puerto 22 (SSH) restringido explícitamente a una única dirección IP de administración, mitigando vectores de ataque externos.
 
-2. ## Aprovisionamiento Automático (User Data)
+## 2. Aprovisionamiento Automático (User Data)
 
 Para evitar errores de configuración manual, el despliegue del servidor se automatizó inyectando lógica Bash directo en el arranque del hardware. El script completo se encuentra documentado en la raíz de este repositorio como install_server.sh.
 
-3. ## Estrategia de Monitoreo Proactivo
+## 3. Estrategia de Monitoreo Proactivo
 
 Se estableció una condición de umbral crítico en CloudWatch: si el consumo de CPUUtilization supera o es igual al 80% en una ventana temporal continua de 5 minutos, se dispara una acción automática dirigida hacia un tópico de Amazon SNS que notifica vía correo electrónico de forma inmediata.
 
